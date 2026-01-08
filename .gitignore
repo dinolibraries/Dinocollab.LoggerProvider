@@ -1,11 +1,10 @@
 ## Build outputs
 
-/bin/
-/obj/
-/artifacts/
-/*.nupkg
-/*.snupkg
-
+**/bin/
+**/obj/
+**/artifacts/
+*.nupkg
+*.snupkg
 ## Visual Studio
 .vs/
 *.user

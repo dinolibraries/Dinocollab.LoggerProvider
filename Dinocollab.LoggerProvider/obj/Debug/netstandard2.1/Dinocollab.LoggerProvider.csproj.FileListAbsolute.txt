@@ -1,9 +1,0 @@
-D:\CSharpProjects\Dinocollab.LoggerProvider\Dinocollab.LoggerProvider\bin\Debug\netstandard2.1\Dinocollab.LoggerProvider.deps.json
-D:\CSharpProjects\Dinocollab.LoggerProvider\Dinocollab.LoggerProvider\bin\Debug\netstandard2.1\Dinocollab.LoggerProvider.dll
-D:\CSharpProjects\Dinocollab.LoggerProvider\Dinocollab.LoggerProvider\bin\Debug\netstandard2.1\Dinocollab.LoggerProvider.pdb
-D:\CSharpProjects\Dinocollab.LoggerProvider\Dinocollab.LoggerProvider\obj\Debug\netstandard2.1\Dinocollab.LoggerProvider.GeneratedMSBuildEditorConfig.editorconfig
-D:\CSharpProjects\Dinocollab.LoggerProvider\Dinocollab.LoggerProvider\obj\Debug\netstandard2.1\Dinocollab.LoggerProvider.AssemblyInfoInputs.cache
-D:\CSharpProjects\Dinocollab.LoggerProvider\Dinocollab.LoggerProvider\obj\Debug\netstandard2.1\Dinocollab.LoggerProvider.AssemblyInfo.cs
-D:\CSharpProjects\Dinocollab.LoggerProvider\Dinocollab.LoggerProvider\obj\Debug\netstandard2.1\Dinocollab.LoggerProvider.csproj.CoreCompileInputs.cache
-D:\CSharpProjects\Dinocollab.LoggerProvider\Dinocollab.LoggerProvider\obj\Debug\netstandard2.1\Dinocollab.LoggerProvider.dll
-D:\CSharpProjects\Dinocollab.LoggerProvider\Dinocollab.LoggerProvider\obj\Debug\netstandard2.1\Dinocollab.LoggerProvider.pdb
