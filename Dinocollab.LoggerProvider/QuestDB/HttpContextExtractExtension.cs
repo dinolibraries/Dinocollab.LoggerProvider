@@ -28,7 +28,7 @@ namespace Dinocollab.LoggerProvider.QuestDB
         public static HttpContextMessageLog CreateContextData(this HttpContext context,string level = "Information")
         {
             var (controller, action) = context.GetControllerAndAction();
-            var claims = context.User.Claims.DistinctBy(x=>x.Type).ToDictionary(c => c.Type, c => c.Value);
+            var claims = context.User.Claims.Select(c => new { c.Type, c.Value });
             var contextData = new HttpContextMessageLog
             {
                 RequestId = context.TraceIdentifier,
