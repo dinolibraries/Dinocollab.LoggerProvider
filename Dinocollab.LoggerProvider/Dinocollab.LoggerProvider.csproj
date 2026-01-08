@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+	<TargetFrameworks>net7.0;net8.0;net9.0;net10.0</TargetFrameworks>
+    <Nullable>enable</Nullable>
+	<OutputType>Library</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ClickHouses\**" />
+    <EmbeddedResource Remove="ClickHouses\**" />
+    <None Remove="ClickHouses\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="net-questdb-client" Version="3.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove="D:\CSharpProjects\Dinocollab.LoggerProvider\Dinocollab.LoggerProvider\QuestDB\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="D:\CSharpProjects\Dinocollab.LoggerProvider\Dinocollab.LoggerProvider\QuestDB\.editorconfig" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <!-- Project links shown on NuGet / package page -->
+    <PackageProjectUrl>https://github.com/dinolibraries/Dinocollab.LoggerProvider</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/dinolibraries/Dinocollab.LoggerProvider</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+</Project>

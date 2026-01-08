@@ -1,0 +1,57 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "Dinocollab.LoggerProvider/1.0.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1",
+          "net-questdb-client": "3.2.0"
+        },
+        "runtime": {
+          "Dinocollab.LoggerProvider.dll": {}
+        }
+      },
+      "net-questdb-client/3.2.0": {
+        "runtime": {
+          "lib/net9.0/net-questdb-client.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Newtonsoft.Json/13.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.1.25517"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Dinocollab.LoggerProvider/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "net-questdb-client/3.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zdugLKqrmkqrECPaVsFIO/6AQvVV+Xkt0wvZVua1NfUKxj0+7a6+zFeBFHdbNKHAC4vQYrSqLHqHyRI0V6m7GA==",
+      "path": "net-questdb-client/3.2.0",
+      "hashPath": "net-questdb-client.3.2.0.nupkg.sha512"
+    },
+    "Newtonsoft.Json/13.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "path": "newtonsoft.json/13.0.1",
+      "hashPath": "newtonsoft.json.13.0.1.nupkg.sha512"
+    }
+  }
+}
