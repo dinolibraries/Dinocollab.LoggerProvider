@@ -16,7 +16,7 @@ jobs:
     - name: Setup .NET SDK
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 8.x  # dùng phiên bản mới nhất, multi-target vẫn build được
+        dotnet-version: 8.x  # use the latest SDK; multi-target builds are supported
 
     - name: Restore dependencies
       run: dotnet restore
