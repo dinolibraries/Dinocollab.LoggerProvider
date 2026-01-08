@@ -1,7 +1,7 @@
 # Dinocollab.LoggerProvider
 
 [![NuGet](https://img.shields.io/nuget/v/Dinocollab.LoggerProvider.svg)](https://www.nuget.org/packages/Dinocollab.LoggerProvider)
-
+[Dinocollab.LoggerProvider![Nuget](https://img.shields.io/nuget/dt/Dinocollab.LoggerProvider)](https://www.nuget.org/packages/Dinocollab.LoggerProvider) 
 Dinocollab.LoggerProvider là một thư viện provider logging cho .NET, dùng để gửi và lưu trữ log từ ứng dụng sang backend (ví dụ QuestDB). README này trình bày cách cài đặt, cấu hình liên kết dự án (để nút **Get** trên NuGet dẫn tới đúng trang) và ví dụ sử dụng cơ bản.
 
 Repository: https://github.com/dinolibraries/Dinocollab.LoggerProvider

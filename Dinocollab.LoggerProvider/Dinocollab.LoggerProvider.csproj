@@ -31,6 +31,8 @@
     <PackageProjectUrl>https://github.com/dinolibraries/Dinocollab.LoggerProvider</PackageProjectUrl>
     <RepositoryUrl>https://github.com/dinolibraries/Dinocollab.LoggerProvider</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <!-- Include repository README in the NuGet package (shows on nuget.org) -->
+    <PackageReadmeFile>../README.md</PackageReadmeFile>
   </PropertyGroup>
 
 </Project>

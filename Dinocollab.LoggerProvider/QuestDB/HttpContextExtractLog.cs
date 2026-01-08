@@ -33,7 +33,7 @@ namespace Dinocollab.LoggerProvider.QuestDB
             Validate().Any();
             _logWorker = questDbLogWorker;
         }
-        public HttpContext HttpContext { get => httpContextAccesory.HttpContext; }
+        public HttpContext? HttpContext { get => httpContextAccesory.HttpContext; }
         public const long MaxBodySize = (long)(0.5 * 1024 * 1024);
         public  IEnumerable<bool> Validate()
         {
