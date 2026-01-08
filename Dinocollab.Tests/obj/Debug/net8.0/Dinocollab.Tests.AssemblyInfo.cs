@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Dinocollab.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7022096b11da01bb7d4b3a1f44c87370ffb48f3c")]
 [assembly: System.Reflection.AssemblyProductAttribute("Dinocollab.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Dinocollab.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,0 +1,53 @@
+## Build outputs
+
+/bin/
+/obj/
+/artifacts/
+/*.nupkg
+/*.snupkg
+
+## Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Rider
+.idea/
+*.sln.iml
+
+## VS Code
+.vscode/
+
+## NuGet
+packages/
+
+## OS generated
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+## Logs
+*.log
+
+## Secrets and certificates
+secrets.json
+*.pfx
+
+## Publish outputs
+/publish/
+/wwwroot/
+
+## Docker
+docker-compose.override.yml
+
+## Dotnet
+project.lock.json
+project.fragment.lock.json
+
+## ASP.NET Core
+appsettings.Development.json
+
+# End of .gitignore
