@@ -200,12 +200,16 @@ namespace Dinocollab.LoggerProvider.QuestDB
             """;
         }
 
-        public static async Task AlterTTLAsync<T>(this string apiUrl, int ttlDays, HttpClient? httpClient = null)
+        public static async Task AlterTTLAsync<T>(this string apiUrl, int ttlDays, string? tablename = null, HttpClient? httpClient = null)
         {
-            var alterTableSql = $"ALTER TABLE {typeof(T).GetTableName()} SET TTL {ttlDays} DAYS;";
+            if(string.IsNullOrEmpty(tablename))
+            {
+                tablename = typeof(T).GetTableName();
+            }
+            var alterTableSql = $"ALTER TABLE {tablename} SET TTL {ttlDays} DAYS;";
             if (ttlDays <= 0)
             {
-                alterTableSql = $"ALTER TABLE {typeof(T).GetTableName()} SET TTL NONE;";
+                alterTableSql = $"ALTER TABLE {tablename} SET TTL NONE;";
             }
             //using http rest api to create table
             /* curl -G \

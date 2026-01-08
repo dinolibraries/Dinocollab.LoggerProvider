@@ -132,7 +132,7 @@ namespace Dinocollab.LoggerProvider.QuestDB
         public override async Task StartAsync(CancellationToken cancellationToken)
         {
             await _options.ApiUrl.CreateTableAsync<T>(_options.TableLogName);
-            await _options.ApiUrl.AlterTTLAsync<T>(_options.TTLDAYS);
+            await _options.ApiUrl.AlterTTLAsync<T>(_options.TTLDAYS, _options.TableLogName);
             await base.StartAsync(cancellationToken);
         }
         public override async Task StopAsync(CancellationToken cancellationToken)
