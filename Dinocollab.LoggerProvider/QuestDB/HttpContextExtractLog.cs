@@ -35,7 +35,7 @@ namespace Dinocollab.LoggerProvider.QuestDB
         }
         public HttpContext? HttpContext { get => httpContextAccesory.HttpContext; }
         public const long MaxBodySize = (long)(0.5 * 1024 * 1024);
-        public  IEnumerable<bool> Validate()
+        public IEnumerable<bool> Validate()
         {
             if (_options == null)
             {
@@ -93,22 +93,28 @@ namespace Dinocollab.LoggerProvider.QuestDB
                         await next();
                     }
                 }
-
-                var contextData = HttpContext.CreateContextData();
-                contextData.RequestBody = bodyRequest;
-                contextData.ResponseBody = bodyResponse;
-
-                if (error != null)
+                try
                 {
-                    contextData.Level = "Error";
-                    contextData.ErrorMessage = error.Message;
-                    contextData.Trace = error.StackTrace;
+                    var contextData = HttpContext.CreateContextData();
+                    contextData.RequestBody = bodyRequest;
+                    contextData.ResponseBody = bodyResponse;
+
+                    if (error != null)
+                    {
+                        contextData.Level = "Error";
+                        contextData.ErrorMessage = error.Message;
+                        contextData.Trace = error.StackTrace;
+                    }
+                    else
+                    {
+                        contextData.Level = "Information";
+                    }
+                    _logWorker.TryEnqueue(contextData);
                 }
-                else
+                catch (Exception ex)
                 {
-                    contextData.Level = "Information";
+                    _logger.LogError(ex, "Failed to create or enqueue log message.");
                 }
-                _logWorker.TryEnqueue(contextData);
             }
             catch (Exception ex)
             {
@@ -163,7 +169,7 @@ namespace Dinocollab.LoggerProvider.QuestDB
             }
         }
         // Optional method to read and include the request body separately
-        public  async Task<string?> ReadResponseBodyAsync( HttpContext context, Func<Task> next, long maxSize = MaxBodySize)
+        public async Task<string?> ReadResponseBodyAsync(HttpContext context, Func<Task> next, long maxSize = MaxBodySize)
         {
             // Store the original response body stream
             var originalBodyStream = context.Response.Body;

@@ -140,7 +140,11 @@ namespace Dinocollab.LoggerProvider.QuestDB
             httpClient ??= new HttpClient();
             var requestUrl = $"{apiUrl}/exec?query={Uri.EscapeDataString(createTableSql)}";
             var response = await httpClient.GetAsync(requestUrl);
-            response.EnsureSuccessStatusCode();
+            if (!response.IsSuccessStatusCode)
+            {
+                var message = await response.Content.ReadAsStringAsync();
+                throw new Exception($"Failed to alter TTL: {message}");
+            }
             return createTableSql;
         }
         public static string CreateTableSql<T>(string? tablename = null)
@@ -211,7 +215,11 @@ namespace Dinocollab.LoggerProvider.QuestDB
             httpClient ??= new HttpClient();
             var requestUrl = $"{apiUrl}/exec?query={Uri.EscapeDataString(alterTableSql)}";
             var response = await httpClient.GetAsync(requestUrl);
-            response.EnsureSuccessStatusCode();
+            if (!response.IsSuccessStatusCode)
+            {
+                var message = await response.Content.ReadAsStringAsync();
+                throw new Exception($"Failed to alter TTL: {message}");
+            }
         }
     }
 }
