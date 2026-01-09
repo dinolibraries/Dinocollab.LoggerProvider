@@ -56,6 +56,7 @@ namespace Dinocollab.LoggerProvider.QuestDB
         private static string? GetDisplayName(this HttpContext context)
         {
             return context.User.Claims.FirstOrDefault(x => x.Type == "name")?.Value
+                ?? context.User.Claims.FirstOrDefault(x => x.Type == "nickname")?.Value
                 ?? context.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name)?.Value;
         }
         private static string? GetUserId(this HttpContext context)
