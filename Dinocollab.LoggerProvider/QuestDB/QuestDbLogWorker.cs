@@ -20,7 +20,7 @@ namespace Dinocollab.LoggerProvider.QuestDB
         private readonly object _senderLock = new();
 
         private readonly string _tableName;
-
+        private volatile bool _tableReady = false;
         public QuestDbLogWorker(
             ILogger<QuestDbLogWorker<T>> logger,
             IOptions<QuestDBLoggerOption> optionsAccessor)
@@ -46,21 +46,49 @@ namespace Dinocollab.LoggerProvider.QuestDB
         public bool TryEnqueue(T log)
             => _channel.Writer.TryWrite(log);
 
-        /* -----------------------------
-         *  BackgroundService lifecycle
-         * -----------------------------*/
-
-        public override async Task StartAsync(CancellationToken cancellationToken)
+     
+        // Create table + TTL via HTTP API
+        public async Task InitialAsync(CancellationToken cancellationToken)
         {
-            // Create table + TTL via HTTP API
-            await _options.ApiUrl.CreateTableAsync<T>(_options.TableLogName);
-            await _options.ApiUrl.AlterTTLAsync<T>(_options.TTLDAYS, _options.TableLogName);
+            var delay = TimeSpan.FromSeconds(1);
+            var maxDelay = TimeSpan.FromMinutes(1);
 
-            await base.StartAsync(cancellationToken);
+            while (!cancellationToken.IsCancellationRequested)
+            {
+                try
+                {
+                    await _options.ApiUrl.CreateTableAsync<T>(_options.TableLogName);
+                    await _options.ApiUrl.AlterTTLAsync<T>(_options.TTLDAYS, _options.TableLogName);
+
+                    _tableReady = true;
+
+                    _logger?.LogInformation(
+                        "QuestDB table {Table} is ready",
+                        _tableName);
+
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    _logger?.LogWarning(
+                        ex,
+                        "QuestDB table not ready, retrying in {Delay}",
+                        delay);
+
+                    await Task.Delay(delay, cancellationToken);
+
+                    delay = TimeSpan.FromMilliseconds(
+                        Math.Min(delay.TotalMilliseconds * 2, maxDelay.TotalMilliseconds)
+                    );
+                }
+            }
         }
-
+           /* -----------------------------
+          *  BackgroundService lifecycle
+          * -----------------------------*/
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+
             var delay = TimeSpan.FromSeconds(1);
             var maxDelay = TimeSpan.FromMinutes(1);
 
@@ -92,6 +120,11 @@ namespace Dinocollab.LoggerProvider.QuestDB
             }
         }
 
+        public override Task StartAsync(CancellationToken cancellationToken)
+        {
+            _ = Task.Run(() => InitialAsync(cancellationToken), cancellationToken);
+            return base.StartAsync(cancellationToken);
+        }
 
         public override async Task StopAsync(CancellationToken cancellationToken)
         {
@@ -111,6 +144,10 @@ namespace Dinocollab.LoggerProvider.QuestDB
 
         private async Task RunAsync(CancellationToken ct)
         {
+            while (!_tableReady)
+            {
+                await Task.Delay(500, ct);
+            }
             var counter = 0;
             var lastFlush = DateTime.UtcNow;
 
